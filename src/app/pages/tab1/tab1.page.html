@@ -1,0 +1,27 @@
+<ion-header no-border>
+  <ion-toolbar color= "dark">
+    <ion-title>
+      Noticias del mundo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color= "dark">
+ 
+<app-noticias [noticias]= "noticiasApi"></app-noticias>
+
+<ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Cargando mas datos ...">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+</ion-content>
+
+<!--
+
+  "noticiasApi"  de tipo Article[] es el array que recivo del http.get 
+  [noticias] es el parametro que le paso  al componente hijo noticias  que lo recibe en el input
+en el app.noticias
+-->

@@ -1,0 +1,200 @@
+API key de newsapi.org 
+
+b9fa56697bd549e88626b3b7b97f118a
+
+inonic g s services/noticias --skipTests=true
+
+generamos un componente.module  
+
+y dos componnetes dentro de components 
+
+noticias y noticia 
+
+///// deploy en android y ios /////////////////
+
+///ios 
+
+en el config damos nombre a al app y y al starter
+
+hacemos el prepare 
+ionic cordova prepare ios
+
+luego hacemos el build
+ionic cordova build ios
+
+vamos en el finder  a platforms /ios 
+y ejecutamos Myapp.xcodeproj 
+ la segunda y suscesivas build hay que ejecutar
+  
+ ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"
+
+
+
+///// android 
+
+hacemos el prepare 
+ionic cordova prepare android
+
+luego hacemos el build
+ionic cordova build android
+
+
+// con el cel conectado usb hacemos 
+ionic cordova run --list
+
+luego 
+ionic cordova run android -l
+
+///////// plugin in app browser ////////////////////////////////////
+
+// para navegar a una url desde un  movil . lo tenemos que hacer mediante un plugins
+// no es como un desck
+// usamos para este caso el in app browser
+
+// son dos instalaciones 
+//instalar el paquete paar usuarlo dentro de ionic 
+//ionic cordova plugin add cordova-plugin-inappbrowser
+
+// y un paquete para usarlo del lado de TS
+//npm install @ionic-native/in-app-browser
+
+// todo plugin lo debemos colocar en el  provider de app.module
+
+
+/////////// plugin  social sharing //////////////
+
+
+ionic cordova plugin add cordova-plugin-x-socialsharing
+npm install @ionic-native/social-sharing
+// todo plugin lo debemos colocar en el  provider de app.module
+
+
+////////////////// plugin storage sq lite  /////////////////////////////
+
+
+ionic cordova plugin add cordova-sqlite-storage
+
+npm install --save @ionic/storage
+
+// declarar en el app.module
+
+
+// creamos un servicio datalocalservice
+
+
+///// tosat controller 
+
+
+//////////////////////////// PWA //////////////////////////////////
+
+ng add @angular/pwa 
+
+con los prepare y build de alguna manera se generaron archivos para que se ejecute en un host 
+
+existe un comando que la prepara en un ambiente de produccion 
+
+ionic build --prod --service-worker
+
+esto cambia el www  lo prepara para produccion en un hosting 
+
+si hacemos cd www
+y luego corremos http-server 
+nos da una url 
+copiamos esa url en el nav y nos despliega la pagina creada 
+
+hasta aqui no funciona los plugines de cordova  y el compartir 
+
+tampoco si lo ejecutamos desde el cel 
+
+
+
+/////////////// preparar la app para la web y movil 
+
+con el generados de manifest 
+obtenemos los iconos de la app
+
+y los copiamos en icons
+
+el theme-color lo agrega el angular pwa 
+
+en el index cambiamos el color de theme-color , al color de nuestra app
+
+
+////// deply en firebase 
+
+creamos un proyecto ionic-noticias
+ click en hosting y nos pide que  instalemos 
+
+
+Install Firebase tools:
+
+sudo npm install -g firebase-tools
+
+en al carpeta del proyecto 
+
+firebase login
+
+como estoy logueado por google alz@aviatel.com 
+ingreso con ese usuario
+
+
+firebase init
+
+bien 
+me pregunta que quiero configurar 
+le digo hosting con space enter 
+
+luego me pregunta el pryecto 
+si el proyecto no esta 
+selecciono 
+dont setup a default project 
+
+luego me pregunta el public directory 
+le digo www
+ me pregunta si quiero uns SPA 
+ le digo que si
+
+me pregunta si quiero sobrescribir el index 
+le digo que no 
+
+todo esto genera un firebase.json 
+
+en firebase encontramos el id del proyecto 
+que es 
+
+ionic-noticias-5ba72
+
+ejecutamos 
+firebase use --add ionic-noticias-5ba72
+esto lo hacemos si no encontramos el nombre del proyecto en el init 
+
+ultimo paso 
+firebase deploy
+ nod da la url : https://ionic-noticias-5ba72.firebaseapp.com
+
+// recordar que los plgins de cordova no funcionan ( compartir por ejemplo )
+
+///// hacemos cambios en  la app , como colores etc 
+
+corremos para que los tome 
+
+ionic build --prod --service-worker
+
+luego hacemos el deploy en firebase 
+
+firebase deploy
+
+
+/////////////////////////// share - api //////////////////////////
+
+agregamso el share -api de google /// ver noticia 
+ que funciona en la web . pero no en el navegador de la pc 
+
+ hacemos de nuevo 
+
+ionic build --prod --service-worker
+
+luego hacemos el deploy en firebase 
+
+firebase deploy
+
